@@ -1,0 +1,19 @@
+body {
+    background: #f4f4f4;
+    font-family: Arial;
+}
+
+.atm {
+    width: 300px;
+    margin: 100px auto;
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+input, button {
+    width: 90%;
+    padding: 8px;
+    margin: 5px;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="atm-container">
+    <h2>ATM Simulator</h2>
+
+    <!-- LOGIN SECTION -->
+    <div id="loginSection">
+        <form id="loginForm" autocomplete="off" onsubmit="return false;">
+            <input type="password" id="pin" placeholder="Enter PIN" autocomplete="new-password" />
+            <button onclick="login()">Login</button>
+        </form>
+    </div>
+
+    <!-- USER INFO -->
+    <h3 id="user"></h3>
+    <p id="balance"></p>
+
+    <!-- ACTIONS (VISIBLE AFTER LOGIN) -->
+    <div id="actions" style="display:none;">
+        <input type="number" id="amount" placeholder="Enter Amount" />
+
+        <button onclick="deposit()">Deposit</button>
+        <button onclick="withdraw()">Withdraw</button>
+        <!-- <button onclick="getBalance()">Check Balance</button> -->
+        <button onclick="downloadStatement()">Mini Statement (PDF)</button>
+
+        <br><br>
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
