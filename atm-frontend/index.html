@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>ATM Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="atm-container">
-    <h2>ATM Simulator</h2>
+    <h2 class="atm-name">Virtual ATM Interface</h2>
 
     <!-- LOGIN SECTION -->
     <div id="loginSection">
         <form id="loginForm" autocomplete="off" onsubmit="return false;">
             <input type="password" id="pin" placeholder="Enter PIN" autocomplete="new-password" />
-            <button onclick="login()">Login</button>
+            <button class="btn-primary" onclick="login()">Login</button>
         </form>
     </div>
 
@@ -23,16 +25,19 @@
     <p id="balance"></p>
 
     <!-- ACTIONS (VISIBLE AFTER LOGIN) -->
-    <div id="actions" style="display:none;">
+    <div id="actions" class="actions" style="display:none;">
         <input type="number" id="amount" placeholder="Enter Amount" />
 
-        <button onclick="deposit()">Deposit</button>
-        <button onclick="withdraw()">Withdraw</button>
-        <!-- <button onclick="getBalance()">Check Balance</button> -->
-        <button onclick="downloadStatement()">Mini Statement (PDF)</button>
+        <div class="controls">
+            <button class="btn-primary" onclick="deposit()">Deposit</button>
+            <button class="btn-primary" onclick="withdraw()">Withdraw</button>
+        </div>
 
-        <br><br>
-        <button onclick="logout()">Logout</button>
+        <button class="btn-secondary" onclick="downloadStatement()">Mini Statement (PDF)</button>
+
+        <div style="height:6px"></div>
+        <button class="btn-danger" onclick="logout()">Logout</button>
+        <div class="footer-note">Select amount then press Withdraw to choose denominations</div>
     </div>
 </div>
 

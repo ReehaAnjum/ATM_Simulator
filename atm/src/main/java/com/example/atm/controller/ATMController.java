@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/atm")
@@ -120,8 +121,15 @@ public class ATMController {
             document.add(new Paragraph("User: " + acc.getUsername()));
             document.add(new Paragraph(" "));
 
-            for (String txn : acc.getTransactions()) {
-                document.add(new Paragraph(txn));
+            // include last 5 transactions (most recent). If fewer, pad with empty lines
+            List<String> txns = acc.getTransactions();
+            int show = 5;
+            int start = Math.max(0, txns.size() - show);
+            for (int i = start; i < txns.size(); i++) {
+                document.add(new Paragraph(txns.get(i)));
+            }
+            for (int i = txns.size(); i < show; i++) {
+                document.add(new Paragraph(" "));
             }
 
             document.close();
