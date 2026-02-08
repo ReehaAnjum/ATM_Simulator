@@ -52,8 +52,10 @@ function login() {
         document.getElementById("balance").innerText =
             "Balance: ₹" + data.balance;
 
+        document.getElementById("loginContainer").style.display = "none";
+        document.getElementById("dashboardContainer").style.display = "block";
+        document.getElementById("controls").style.display = "block";
         document.getElementById("actions").style.display = "block";
-        document.getElementById("loginSection").style.display = "none";
     })
     .catch(err => {
         console.error(err);
@@ -160,6 +162,7 @@ function showDenominationModal(amount, onConfirm) {
     });
 
     const info = document.createElement('div');
+    info.id = 'totalSelected';
     info.style = 'margin-top:8px;';
     info.innerText = 'Total selected: 0';
     form.appendChild(info);
@@ -234,8 +237,8 @@ function logout() {
     currentPin = "";
     document.getElementById("user").innerText = "";
     document.getElementById("balance").innerText = "";
-    document.getElementById("actions").style.display = "none";
-    document.getElementById("loginSection").style.display = "block";
+    document.getElementById("loginContainer").style.display = "block";
+    document.getElementById("dashboardContainer").style.display = "none";
     document.getElementById("pin").value = "";
     document.getElementById("amount").value = "";
 }

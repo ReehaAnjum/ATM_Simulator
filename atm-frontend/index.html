@@ -5,40 +5,88 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>ATM Simulator</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="atm-container">
-    <h2 class="atm-name">Virtual ATM Interface</h2>
-
-    <!-- LOGIN SECTION -->
-    <div id="loginSection">
-        <form id="loginForm" autocomplete="off" onsubmit="return false;">
-            <input type="password" id="pin" placeholder="Enter PIN" autocomplete="new-password" />
-            <button class="btn-primary" onclick="login()">Login</button>
-        </form>
-    </div>
-
-    <!-- USER INFO -->
-    <h3 id="user"></h3>
-    <p id="balance"></p>
-
-    <!-- ACTIONS (VISIBLE AFTER LOGIN) -->
-    <div id="actions" class="actions" style="display:none;">
-        <input type="number" id="amount" placeholder="Enter Amount" />
-
-        <div class="controls">
-            <button class="btn-primary" onclick="deposit()">Deposit</button>
-            <button class="btn-primary" onclick="withdraw()">Withdraw</button>
+  <!-- Login Screen (shown on startup and after logout) -->
+  <div id="loginContainer" class="login-container">
+    <div class="glass-card login-card">
+      <div class="login-header">
+        <div class="bank-logo">AS</div>
+        <h1 class="login-title">ATM Simulator</h1>
+        <p class="login-subtitle">Virtual ATM Interface</p>
+      </div>
+      <form id="loginForm" autocomplete="off" onsubmit="return false;">
+        <label class="label" style="padding-bottom: 1rem;">Enter your PIN</label>
+        <input type="password" id="pin" placeholder="●●●●" autocomplete="new-password" />
+        <div class="login-actions">
+          <button class="btn-primary" onclick="login()">Login</button>
         </div>
-
-        <button class="btn-secondary" onclick="downloadStatement()">Mini Statement (PDF)</button>
-
-        <div style="height:6px"></div>
-        <button class="btn-danger" onclick="logout()">Logout</button>
-        <div class="footer-note">Select amount then press Withdraw to choose denominations</div>
+      </form>
     </div>
+  </div>
+
+  <!-- Dashboard (shown after successful login) -->
+  <div id="dashboardContainer" class="dashboard-container" style="display:none;">
+    <header class="atm-header">
+      <div class="brand">
+        <div class="bank-logo">AS</div>
+        <div class="brand-text">
+          <div class="atm-name">ATM Simulator</div>
+          <div class="small muted">Virtual ATM Interface</div>
+        </div>
+      </div>
+      <div class="atm-status">
+        <div id="user" class="greeting"> </div>
+        <div id="balance" class="balance"> </div>
+      </div>
+    </header>
+
+    <main class="atm-main">
+      <!-- Left panel: Quick controls -->
+      <aside class="panel left-panel">
+        <div id="controls" class="glass-card controls-card">
+          <label class="label">Quick amount</label>
+          <input type="number" id="amount" placeholder="Enter amount" />
+          <div class="quick-buttons">
+            <button class="chip" onclick="document.getElementById('amount').value=20">₹20</button>
+            <button class="chip" onclick="document.getElementById('amount').value=50">₹50</button>
+            <button class="chip" onclick="document.getElementById('amount').value=100">₹100</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right panel: Action cards -->
+      <section id="actions" class="panel right-panel">
+        <div class="feat">
+          Our Features
+        </div>
+        <div class="cards-grid">
+          <button class="action-card" onclick="withdraw()">
+            <div class="icon">💸</div>
+            <div class="label">Cash Withdrawal</div>
+          </button>
+
+          <button class="action-card" onclick="deposit()">
+            <div class="icon">🏦</div>
+            <div class="label">Cash Deposit</div>
+          </button>
+
+          <button class="action-card" onclick="downloadStatement()">
+            <div class="icon">🔁</div>
+            <div class="label">Mini Statement</div>
+          </button>
+
+          <button class="action-card" onclick="logout()">
+            <div class="icon">⏏️</div>
+            <div class="label">Exit</div>
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
 </div>
 
 <script src="script.js"></script>
